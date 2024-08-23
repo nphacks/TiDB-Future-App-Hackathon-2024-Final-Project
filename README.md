@@ -10,7 +10,6 @@ This project is a full-stack application designed to manage and search research 
 
 
 ## Setup Instructions
-
 ### Environment Variables
 
 An `.env` file has been sent to the hackathon judges via email:
@@ -53,7 +52,8 @@ Responsive Frontend: Built with Angular for an intuitive user experience.
 - Ensure the .env file is correctly placed in the backend-research folder.
 - Start the backend server using npm start.
 - Start the frontend using ng serve.
-- Access the application through your browser at http://localhost:4200.
+- Access the application through your browser at http://localhost:4200
+- Search for a terms like superconnectivity, superconductors, artificial intelligence or more
 
 
 ### Dependencies
