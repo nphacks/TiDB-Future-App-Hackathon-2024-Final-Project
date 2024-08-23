@@ -1,11 +1,13 @@
-# Project Title
+# PaperTrail
 
-Brief description of the project.
+This project is a full-stack application designed to manage and search research papers using advanced vector search capabilities. The system is divided into two parts: the backend, which is built using Node.js and Express.js, and the frontend, which is developed using Angular.
+
 
 ## Project Structure
 
 - **Backend Folder**: `backend-research`
 - **Frontend Folder**: `frontend`
+
 
 ## Setup Instructions
 
@@ -17,6 +19,8 @@ An `.env` file has been sent to the hackathon judges via email:
 - **From**: `nishtha.hackathon@gmail.com`
 
 Please place the provided `.env` file in the `backend-research` folder.
+It was also submitted with the project submission at 'Upload a File'.
+
 
 ### Backend Setup
 
@@ -29,8 +33,7 @@ npm start
 ```
 
 ### Frontend Setup
-Navigate to the `frontend`
- folder and run the following commands:
+Navigate to the `frontend` folder and run the following commands:
 
 ```bash
 cd frontend
@@ -40,15 +43,18 @@ ng serve
 
 The frontend will be running on http://localhost:4200.
 
+
 ## Key Features
 Vector Search for Research Papers: Advanced vector-based search engine for finding similar research papers.
 Responsive Frontend: Built with Angular for an intuitive user experience.
+
 
 ## How to Run the Project
 - Ensure the .env file is correctly placed in the backend-research folder.
 - Start the backend server using npm start.
 - Start the frontend using ng serve.
 - Access the application through your browser at http://localhost:4200.
+
 
 ### Dependencies
 - Backend
