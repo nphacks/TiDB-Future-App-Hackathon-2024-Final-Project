@@ -1,0 +1,10 @@
+<div class="tab-components">
+    <div [@chatBoxAnimation]="chatBoxState" class="chatbox-div">
+      ChatBox
+    </div>
+    <div class="chat-div">
+      <input type="text" id="news-chatbar" placeholder="Chat with NewsTrail" [@chatBarAnimation]="chatBarState" [(ngModel)]="chatMessage"/>
+      <button (click)="openChatBox()" class="arrow-button"><i class="fa-solid fa-arrow-up"></i></button>
+    </div>
+  </div>
+  

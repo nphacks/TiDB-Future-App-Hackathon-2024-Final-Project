@@ -1,0 +1,18 @@
+<!-- <div class="home-page">
+    <h1>Welcome to NewsTrail</h1>
+    <mat-tab-group>
+        <mat-tab label="Timeline"> </mat-tab>
+        <mat-tab label="Chatbot"> <app-chatbot></app-chatbot> </mat-tab>
+    </mat-tab-group>
+</div> -->
+<div class="main-page">
+    <div class="papertrail-logo" [@moveUp]="moveState">
+      <h1>Welcome to PaperTrail</h1>
+    </div>
+    <!-- <mat-tab-group>
+      <mat-tab label="Timeline"><app-timeline (animate)="animateMove()"></app-timeline></mat-tab>
+      <mat-tab label="Chatbot"><app-chatbot (animate)="animateMove()"></app-chatbot></mat-tab>
+    </mat-tab-group> -->
+    <app-timeline />
+</div>
+<app-loading *ngIf="isLoading"></app-loading>

@@ -1,0 +1,84 @@
+<div class="container" [@containerAnimation]="containerState">
+    <div class="papers-all-timelines" [@moveLeft]="leftState">
+        <div *ngIf="timelineActivate">
+            <div *ngIf="timelinePapers" class="paper-timeline">
+                <div *ngFor="let paper of timelinePapers; let i = index" [@cardAnimation]>
+                    <div class="item">
+                        <div class="timeline-similarity">
+                            <span *ngIf="i === 0">Most Similar</span>
+                        </div>
+                        <div class="green-timeline-row"></div>
+                        <div class="arrow-div">
+                            <i *ngIf="paper.similarity > firstMidPoint" class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <div class="paper-timeline-card">
+                            <div class="paper-card">
+                            <div *ngIf="paper.similarity > firstMidPoint">{{paper.update_date | dateFormat}}</div>
+                            <div class="paper-timeline-title" *ngIf="paper.similarity > firstMidPoint" (click)="changePaperFromTimeline(i)">{{paper.title}}</div>
+                            </div>
+                        </div>
+                        <div class="timeline-similarity">
+                            <span *ngIf="i === 0">Little Similar</span>
+                        </div>
+                        <div class="orange-timeline-row"></div>
+                        <div class="arrow-div">
+                            <i *ngIf="paper.similarity > secondMidPoint && paper.similarity < firstMidPoint" class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <div class="paper-timeline-card">
+                            <div class="paper-card">
+                            <div *ngIf="paper.similarity > secondMidPoint && paper.similarity < firstMidPoint">{{paper.update_date | dateFormat}}</div>
+                            <div class="paper-timeline-title" *ngIf="paper.similarity > secondMidPoint && paper.similarity < firstMidPoint" (click)="changePaperFromTimeline(i)">{{paper.title}}</div>
+                            </div>
+                        </div>
+                        <div class="timeline-similarity">
+                            <span *ngIf="i === 0">Least Similar</span>
+                        </div>
+                        <div class="yellow-timeline-row"></div>
+                        <div class="arrow-div">
+                            <i *ngIf="paper.similarity < secondMidPoint" class="fa-solid fa-arrow-down"></i>
+                        </div>
+                        <div class="paper-timeline-card">
+                            <div class="paper-card">
+                            <div *ngIf="paper.similarity < secondMidPoint">{{paper.update_date | dateFormat}}</div>
+                            <div class="paper-timeline-title" *ngIf="paper.similarity < secondMidPoint" (click)="changePaperFromTimeline(i)">{{paper.title}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div [@moveRight]="rightState" class="search-paper">
+        <div class="search-div">
+            <input type="search" class="paper-searchbar" placeholder="Search for paper" [(ngModel)]="searchpaperText" />
+            <button class="search-button" (click)="searchPaper()"><i class="fa fa-search search-icon"></i></button>
+        </div>
+        <div *ngIf="paperActivate && researchPaper" class="paper-div">
+            <div class="paper-timeline-button">
+                <button (click)="displayTimeline()"><i class="fa-solid fa-arrow-left"></i> See Timeline</button>
+            </div>
+            <div class="paper-url">
+                <a *ngIf="researchPaper?.doi === null" (click)="search(researchPaper?.title)" target="_blank">Search Research Paper</a>
+                <a *ngIf="researchPaper?.doi !== null" [href]="'https://doi.org/' + researchPaper?.doi" target="_blank">View Research Paper</a>
+            </div>
+            <div class="paper-date">{{(researchPaper?.update_date) | dateFormat }}</div>
+            <div class="paper-source">{{researchPaper?.source?.name}}</div>
+            <div class="paper-title">{{researchPaper?.title}}</div>
+            <div class="paper-text">
+                <div class="papers-abstract">{{researchPaper?.abstract}}</div>
+                <div class="papers-versions">
+                    Versions:
+                    <ul>
+                        <li  *ngFor="let item of researchPaper?.versions">
+                            Version: {{ item.version }} | Created: {{ item.created }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <button (click)="animateMove()">Animate Up</button>
+    <button (click)="animateLeftRight()">Animate Left/Right</button> -->
+</div>
+<app-loading *ngIf="isLoading"></app-loading>
+<app-snackbar [message]="errorMessage"></app-snackbar>

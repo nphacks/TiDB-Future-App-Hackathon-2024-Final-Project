@@ -1,0 +1,201 @@
+.container {
+    position: relative;
+    min-height: 200px;
+    width: 90vw;
+    margin: 50px auto;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.search-paper {
+    position: absolute;
+    top: 0;
+    width: 30vw;
+    min-width: 500px;
+    min-height: 200px;
+    z-index: 2;
+    right: 50%;
+    transform: translateX(50%);
+}
+
+.search-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.paper-searchbar {
+    padding: 10px;
+    border-radius: 5px 0 0 5px;
+    min-width: 450px;
+    width: 90%;
+    height: 50px;
+    border: 1px solid #673ab7;
+}
+
+.search-button {
+    height: 50px;
+    min-width: 50px;
+    width: 10%;
+    border: 0;
+    border-radius: 0 5px 5px 0;
+    font-size: 15px;
+    color: #fff;
+    background-color: #673ab7;
+}
+
+.paper-div {
+    min-width: 500px;
+    width: 100%;
+    min-height: 650px;
+    height: 65vh;
+    margin: 20px 0 0 0;
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 50% auto;
+    grid-template-rows: 20px 20px 40px auto ;
+    grid-template-areas:    'timeline-btn article-link'
+                            'date source'
+                            'title title'
+                            'text text';
+    grid-row-gap: 16px;
+    background-color: rgba(104, 58, 183, 0.05);
+    transition: all 0.5s ease; /* Smooth transition for all changes */
+}
+
+.paper-timeline-button {
+    grid-area: timeline-btn;
+}
+
+.paper-url {
+    grid-area: article-link;
+}
+
+.paper-date {
+    grid-area: date;
+}
+
+.paper-source {
+    grid-area: source;
+}
+
+.paper-title {
+    grid-area: title;
+    grid-column: span 2;
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.paper-text {
+    grid-area: text;
+    grid-column: span 2;
+    overflow-y: auto;
+}
+
+.paper-description {
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+// .papers-abstract {
+//     // font-size: 12px;
+// }
+
+.papers-versions {
+    margin-top: 16px;
+    font-size: 10px;
+    font-style: italic;
+}
+
+.papers-all-timelines {
+    position: absolute;
+    top: 0;
+    width: 50vw;
+    min-width: 600px;
+    min-height: 800px;
+    height: 75vh;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow-y: auto;
+    overflow-x: auto; 
+    direction: rtl; 
+    white-space: nowrap; 
+    scroll-behavior: smooth; 
+    // background-color: rgba(104, 58, 183, 0.05);
+}
+
+.paper-timeline  {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start; 
+}
+
+.item {
+    min-width: 250px; 
+    height: 100%;
+    text-align: center;
+}
+
+/* Optional: Inverting the scrolling direction */
+.paper-timeline::-webkit-scrollbar {
+    direction: ltr;
+}
+
+.timeline-similarity {
+    height: 16px;
+}
+
+.green-timeline-row {
+    height: 5px;
+    margin-top: 10px;
+    background-color: green;
+}
+
+.orange-timeline-row {
+    height: 5px;
+    margin-top: 10px;
+    background-color: orange;
+}
+
+.yellow-timeline-row {
+    height: 5px;
+    margin-top: 10px;
+    background-color: yellow;
+}
+
+.fa-arrow-down {
+    color: #673ab7;
+}
+
+.paper-timeline-card {
+    height: 150px;
+    padding: 10px;
+    white-space: normal;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.arrow-div {
+    height: 15px;
+}
+
+.paper-card {
+    height: 100%;
+    width: 100%;
+}
+
+.paper-timeline-title {
+    margin-top: 16px;
+    padding: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #673ab7;
+}
+
+.paper-timeline-title:hover {
+    cursor: pointer;
+}
