@@ -9,7 +9,8 @@ require('dotenv').config();
 app.use(express.json());  
 
 const cors = require('cors');
-app.use(cors());1
+app.use(cors()); // Allows all origins
+
 require('dotenv').config();
 
 app.use('/paper', researchPaperRoutes);  

@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { trigger, state, style, transition, animate, query, stagger } from '@angular/animations';
 import { TimelineService } from '../../services/timeline.service';
+import { SnackbarComponent } from '../../snackbar/snackbar.component';
 
 @Component({
   selector: 'app-timeline',
@@ -53,6 +54,8 @@ export class TimelineComponent {
   firstMidPoint: number;
   secondMidPoint: number;
   isLoading = false;
+  @ViewChild(SnackbarComponent) snackbar!: SnackbarComponent;
+  errorMessage: string = 'An error occurred!';
 
   constructor(private timelineService: TimelineService) {
     this.firstMidPoint = 0;
@@ -82,13 +85,24 @@ export class TimelineComponent {
     // this.newsActivate = true
     // this.researchPaper = (this.test as any)['article']
     this.isLoading = true;
-    this.timelineService.searchNews(this.searchpaperText).subscribe((res) => {
-      this.paperActivate = true
-      this.researchPaper = (res as any)['article']
-      const object = JSON.parse(this.researchPaper.versions);
-      this.researchPaper.versions = object
-      this.isLoading = false
-      // this.simulateError()
+    this.timelineService.searchNews(this.searchpaperText).subscribe({
+      next: (res: any) => {
+        if(res == null) {
+          this.handleError('No Research paper found on the topic')
+          this.isLoading = false
+        }
+        this.paperActivate = true
+        this.researchPaper = res['article']
+        const object = JSON.parse(this.researchPaper.versions);
+        this.researchPaper.versions = object
+        this.isLoading = false
+        
+        // this.simulateError()
+      },
+      error: (err) => {
+        this.handleError(err.error)
+        this.isLoading = false
+      }
     })
 
     if(this.timelineActivate === true) {
@@ -106,17 +120,23 @@ export class TimelineComponent {
 
   getTimelineData() {
     this.isLoading = true;
-    this.timelineService.getTimelineNews(this.searchpaperText).subscribe((res) => {
-      let response = (res as any)
-      this.timelinePapers = response['topPapers']
-      this.timelinePapers.sort((a: any, b: any) => {
-        const dateA = new Date(a.update_date).getTime(); 
-        const dateB = new Date(b.update_date).getTime(); 
-        return dateB - dateA; 
-      });     
-      this.firstMidPoint = this.average(response['maxSimilarity'], response['medianSimilarity']);
-      this.secondMidPoint = this.average(response['minSimilarity'], response['medianSimilarity']);
-      this.isLoading = false;
+    this.timelineService.getTimelineNews(this.searchpaperText).subscribe({
+      next: (res) => {
+        let response = (res as any)
+        this.timelinePapers = response['topPapers']
+        this.timelinePapers.sort((a: any, b: any) => {
+          const dateA = new Date(a.update_date).getTime(); 
+          const dateB = new Date(b.update_date).getTime(); 
+          return dateB - dateA; 
+        });     
+        this.firstMidPoint = this.average(response['maxSimilarity'], response['medianSimilarity']);
+        this.secondMidPoint = this.average(response['minSimilarity'], response['medianSimilarity']);
+        this.isLoading = false;
+      },
+      error: (err) => { 
+        this.handleError(err.error)
+        this.isLoading = false
+      }
     })
   }
 
@@ -149,17 +169,14 @@ export class TimelineComponent {
     window.open(searchUrl, '_blank');
   }
 
-  errorMessage: string | null = null;
-
-  handleError(error: any): void {
-    this.errorMessage = 'An error occurred: ' + (error.message || 'Unknown error');
-    // Simulate showing the snackbar for demonstration
-    // In real usage, you might handle this in a service or error interceptor
+  handleError(error: string): void {
+    this.errorMessage = error; 
+    this.snackbar.showSnackbar(); 
   }
 
-  // Example function to simulate an error
   simulateError(): void {
-    this.handleError(new Error('Simulated error'));
+    const error = 'An unexpected error occurred!';
+    this.handleError(error);
   }
 
   // @Output() animate = new EventEmitter<void>();

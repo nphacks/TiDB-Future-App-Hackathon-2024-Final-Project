@@ -1,3 +1,5 @@
+<app-snackbar [message]="errorMessage"></app-snackbar>
+
 <div class="container" [@containerAnimation]="containerState">
     <div class="papers-all-timelines" [@moveLeft]="leftState">
         <div *ngIf="timelineActivate">
@@ -18,7 +20,7 @@
                             </div>
                         </div>
                         <div class="timeline-similarity">
-                            <span *ngIf="i === 0">Little Similar</span>
+                            <span *ngIf="i === 0">Moderately Similar</span>
                         </div>
                         <div class="orange-timeline-row"></div>
                         <div class="arrow-div">
@@ -81,4 +83,3 @@
     <button (click)="animateLeftRight()">Animate Left/Right</button> -->
 </div>
 <app-loading *ngIf="isLoading"></app-loading>
-<app-snackbar [message]="errorMessage"></app-snackbar>

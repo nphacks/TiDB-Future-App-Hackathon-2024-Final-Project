@@ -1,24 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-snackbar',
   templateUrl: './snackbar.component.html',
   styleUrls: ['./snackbar.component.scss']
 })
-export class SnackbarComponent implements OnInit {
-  @Input() message: string | null = null;
+export class SnackbarComponent {
+  @Input() message: string = '';
+  isVisible: boolean = false;
 
-  ngOnInit(): void {
-    if (this.message) {
-      this.show();
-    }
+  showSnackbar(): void {
+    this.isVisible = true;
   }
 
-  show(): void {
-    const snackbar = document.querySelector('.snackbar');
-    if (snackbar) {
-      snackbar.classList.add('show');
-      setTimeout(() => snackbar.classList.remove('show'), 3000); // Hide after 3 seconds
-    }
+  closeSnackbar(): void {
+    this.isVisible = false;
   }
 }

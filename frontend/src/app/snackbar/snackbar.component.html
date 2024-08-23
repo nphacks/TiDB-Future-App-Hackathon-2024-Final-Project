@@ -1,3 +1,4 @@
-<div class="snackbar" *ngIf="message">
-    {{ message }}
-</div>
+<div class="snackbar" *ngIf="isVisible">
+    <span>{{ message }}</span>
+    <button class="close-btn" (click)="closeSnackbar()">✖</button>
+  </div>
