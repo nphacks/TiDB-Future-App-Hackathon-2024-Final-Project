@@ -1,0 +1,35 @@
+{
+  "name": "backend-research",
+  "version": "1.0.0",
+  "description": "Backend to search research papers.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "@mozilla/readability": "^0.5.0",
+    "@types/node": "^22.4.1",
+    "axios": "^1.7.4",
+    "cheerio": "^1.0.0",
+    "compromise": "^14.14.0",
+    "compute-cosine-similarity": "^1.1.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsdom": "^24.1.1",
+    "mysql2": "^3.11.0",
+    "natural": "^8.0.1",
+    "newsapi": "^2.4.1",
+    "node-fetch": "^2.7.0",
+    "node-nlp": "^4.27.0",
+    "nodemon": "^3.1.4",
+    "sequelize": "^6.37.3"
+  },
+  "devDependencies": {
+    "spacy-nlp": "^1.0.11"
+  },
+  "author": "Nishtha Patel",
+  "license": "ISC"
+}
